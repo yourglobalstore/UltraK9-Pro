@@ -2,201 +2,163 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>UltraK9 Pro – Primal Nutrients for a Healthy, Happy Dog</title>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17676368282"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-17676368282');
-  </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UltraK9 Pro - Support Your Dog’s Health</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      color: #fff;
-      background: #000;
-      overflow: hidden;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      background: #011a1d url('https://i.imgur.com/ElONnIE.jpeg') center center/cover no-repeat;
       height: 100vh;
-      width: 100%;
-    }
-
-    .hero {
-      height: 100vh;
-      width: 100%;
-      background:
-        linear-gradient(rgba(0,50,60,0.75), rgba(0,0,0,0.8)),
-        url('https://i.imgur.com/gI27wGF.jpeg')
-        center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 5vw;
+      overflow: hidden;
       position: relative;
     }
 
-    .hero h1 {
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      font-weight: bold;
-      max-width: 900px;
-      line-height: 1.3;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-      background: linear-gradient(90deg, #0092A3, #C23A2E);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* Overlay escuro translúcido */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 0;
     }
 
-    .hero p {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      max-width: 750px;
-      margin-bottom: 40px;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-      color: #EAFBFF;
+    h1 {
+      color: white;
+      font-size: 2.8em;
+      font-weight: 700;
+      z-index: 1;
+      margin: 0 10px;
     }
 
-    /* COOKIE BOX */
-    .cookie-box {
+    h1 span {
+      color: #ffcc00; /* Destaque amarelo */
+    }
+
+    p {
+      color: #f0f0f0;
+      font-size: 1.1em;
+      max-width: 700px;
+      margin: 20px auto;
+      z-index: 1;
+    }
+
+    /* Pop-up de cookies */
+    .cookie-popup {
       position: fixed;
-      bottom: 5%;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0,30,40,0.85);
+      background-color: rgba(10, 30, 30, 0.95);
+      padding: 25px 30px;
       border-radius: 15px;
-      padding: 30px;
+      max-width: 420px;
       text-align: center;
-      max-width: 480px;
-      width: 90%;
+      z-index: 2;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      z-index: 9999;
-      animation: fadeIn 1s ease;
     }
 
-    .cookie-box h2 {
-      color: #FFFFFF;
-      font-size: clamp(1.2rem, 3vw, 1.6rem);
-      margin-bottom: 10px;
-    }
-
-    .cookie-box p {
-      margin-bottom: 20px;
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      color: #D9EBEE;
-      line-height: 1.4;
-    }
-
-    .cookie-box button#acceptCookies {
-      background: linear-gradient(90deg, #0092A3, #C23A2E);
-      border: none;
+    .cookie-popup h2 {
       color: white;
+      margin-top: 0;
+      font-size: 1.2em;
+    }
+
+    .cookie-popup p {
+      font-size: 0.95em;
+      color: #d9d9d9;
+      margin-bottom: 20px;
+    }
+
+    .cookie-popup button {
+      background: linear-gradient(to right, #00b894, #ff6b6b);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1em;
       font-weight: bold;
-      border-radius: 30px;
-      padding: 14px 32px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: transform 0.2s, opacity 0.2s;
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      width: 100%;
-      max-width: 250px;
+      transition: all 0.3s ease;
     }
 
-    .cookie-box button#acceptCookies:hover {
+    .cookie-popup button:hover {
       opacity: 0.9;
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
 
-    /* Close (X) button */
+    /* Botão de fechar (X) */
     .close-btn {
       position: absolute;
       top: 8px;
       right: 12px;
-      background: #fff;
-      border: none;
-      color: #000;
-      font-size: 0.85rem;
+      color: white;
       font-weight: bold;
-      border-radius: 50%;
-      width: 22px;
-      height: 22px;
+      font-size: 18px;
       cursor: pointer;
-      line-height: 20px;
-      text-align: center;
-      transition: all 0.18s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      z-index: 10000;
     }
 
-    .close-btn:hover {
-      background: #e6e6e6;
-      transform: scale(1.08);
+    /* Loading */
+    .loading {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      font-size: 1.5em;
+      font-weight: bold;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translate(-50%, 20px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        padding: 0 10px;
+    /* Responsividade */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
       }
-      .cookie-box {
-        bottom: 30px;
-        padding: 25px 20px;
-        max-width: 95%;
-      }
-      .close-btn {
-        top: 6px;
-        right: 10px;
-        width: 20px;
-        height: 20px;
-        font-size: 0.8rem;
+      .cookie-popup {
+        max-width: 90%;
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
+  <h1>Support Your Dog’s Health with <span>UltraK9 Pro</span></h1>
+  <p>Discover the primal nutrients that help your best friend live a longer, stronger, and happier life — naturally formulated and backed by science.</p>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>Support Your Dog’s Health with UltraK9 Pro</h1>
-    <p>Discover the primal nutrients that help your best friend live a longer, stronger, and happier life — naturally formulated and backed by science.</p>
-  </section>
-
-  <!-- COOKIE BOX -->
-  <div class="cookie-box" id="cookieBox" role="dialog" aria-label="Cookie consent">
-    <button class="close-btn" id="closeBanner" aria-label="Close and continue">✕</button>
+  <div class="cookie-popup" id="cookiePopup">
+    <div class="close-btn" onclick="redirect()">×</div>
     <h2>Unlock a Healthier Life for Your Pup</h2>
     <p>Click below to learn how UltraK9 Pro’s natural formula helps dogs regain their vitality, energy, and joy — from the inside out.</p>
-    <button id="acceptCookies">Continue</button>
+    <button onclick="showLoading()">Continue</button>
   </div>
 
-  <!-- SCRIPT -->
-  <script>
-    const affiliateLink = "https://f65badfilm2-9u7h-nsyqwvkxm.hop.clickbank.net/";
+  <div class="loading" id="loadingScreen">Loading, please wait...</div>
 
-    function redirectToAffiliate() {
-      // small UX: show loading text then redirect
-      const box = document.getElementById("cookieBox");
-      box.innerHTML = "<p style='color:#fff; font-weight:bold; text-align:center;'>Loading, please wait...</p>";
-      setTimeout(() => {
-        window.location.href = affiliateLink;
-      }, 1000);
+  <script>
+    const affiliateLink = "https://d71c9fsbnt9nat69f0o5scu5u3.hop.clickbank.net/";
+
+    function redirect() {
+      window.location.href = affiliateLink;
     }
 
-    document.getElementById('acceptCookies').addEventListener('click', redirectToAffiliate);
-    document.getElementById('closeBanner').addEventListener('click', redirectToAffiliate);
+    function showLoading() {
+      const popup = document.getElementById('cookiePopup');
+      popup.style.display = 'none';
+      const loading = document.getElementById('loadingScreen');
+      loading.style.display = 'flex';
+      setTimeout(() => {
+        window.location.href = affiliateLink;
+      }, 2000);
+    }
   </script>
-
 </body>
 </html>
